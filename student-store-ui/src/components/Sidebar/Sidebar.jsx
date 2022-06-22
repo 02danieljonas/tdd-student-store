@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Sidebar({isOpen, handleOnToggle}) {
   return (
     <section className={`sidebar ${isOpen?"open":"closed"}`}>
-      <button onClick={()=>{
+      <button className="toggle-button" onClick={()=>{
         handleOnToggle(!isOpen)
       }}>
       <img src={arrow} alt="arrow" color="green" width={45}/>

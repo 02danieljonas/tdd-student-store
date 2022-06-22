@@ -26,6 +26,7 @@ const ProductDetail = ({ products }) => {
 
 export default function App() {
     const [products, setProducts] = useState([]);
+
     const getData = () => {
         axios
             .get("https://codepath-store-api.herokuapp.com/store")
@@ -35,12 +36,13 @@ export default function App() {
             .catch((data) => {
                 console.error("Error with loading data", data);
             });
+        setIsFetching(false);
     };
+    const [isFetching, setIsFetching] = useState(true);
     React.useEffect(() => {
         getData();
     }, []);
 
-    const [isFetching, setIsFetching] = useState(false);
     let error;
     let shoppingCart = [];
 
