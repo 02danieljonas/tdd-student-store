@@ -8,7 +8,6 @@ export default function Sidebar({isOpen, handleOnToggle}) {
     <section className={`sidebar ${isOpen?"open":"closed"}`}>
       <button onClick={()=>{
         handleOnToggle(!isOpen)
-        console.log(isOpen)
       }}>
       <img src={arrow} alt="arrow" color="green" width={45}/>
       </button>

@@ -46,7 +46,6 @@ const Search = ({ setSearchValue, setCategory, category }) => {
                 <button
                     onClick={() => {
                         setCategory("Accessories");
-                        console.log(category)
                     }}
                     className={category=="Accessories"?"choosen-button":""}
                 >

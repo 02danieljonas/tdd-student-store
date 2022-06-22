@@ -6,7 +6,7 @@ import NotFound from "../NotFound/NotFound";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import db from "../../../../student-store-express-api/data/db.json";
+// import db from "../../../../student-store-express-api/data/db.json";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 // import { useEffect } from "react";
@@ -14,8 +14,6 @@ import { useParams } from "react-router-dom";
 const ProductDetail = ({ products }) => {
     let productId = useParams().productId;
     let product = products[productId - 1];
-    console.log(product);
-
     return (
         <div className="product-container">
             <h1 className="product-name">{product.name}</h1>
@@ -27,7 +25,21 @@ const ProductDetail = ({ products }) => {
 };
 
 export default function App() {
-    let products = [];
+    const [products, setProducts] = useState([]);
+    const getData = () => {
+        axios
+            .get("https://codepath-store-api.herokuapp.com/store")
+            .then(({ data }) => {
+                setProducts(data.products);
+            })
+            .catch((data) => {
+                console.error("Error with loading data", data);
+            });
+    };
+    React.useEffect(() => {
+        getData();
+    }, []);
+
     const [isFetching, setIsFetching] = useState(false);
     let error;
     let shoppingCart = [];
@@ -66,9 +78,6 @@ export default function App() {
         console.log("checkout form submitted", props.target);
     };
 
-    const [filler, setFiller] = useState([]);
-
-    const [data, setData] = useState([1, 1]);
     return (
         <div className="app">
             <BrowserRouter>
@@ -76,7 +85,7 @@ export default function App() {
                     <Navbar />
                     <Sidebar
                         isOpen={isOpen}
-                        products={db.products}
+                        products={products}
                         handleOnToggle={handleOnToggle}
                     />
 
@@ -85,7 +94,7 @@ export default function App() {
                             path="/"
                             element={
                                 <Home
-                                    products={data.products}
+                                    products={products}
                                     handleAddItemToCart={handleAddItemToCart}
                                     handleRemoveItemFromCart={
                                         handleRemoveItemFromCart
@@ -95,7 +104,7 @@ export default function App() {
                         />
                         <Route
                             path="/products/:productId"
-                            element={<ProductDetail products={db.products} />}
+                            element={<ProductDetail products={products} />}
                         />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
