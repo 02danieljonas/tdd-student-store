@@ -20,7 +20,7 @@ const ProductCard = ({
                 product.name.toLowerCase().includes(searchValue.toLowerCase())
                     ? ""
                     : "hidden"
-            } 
+            }
             ${
                 category == "All"
                     ? ""

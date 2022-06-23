@@ -15,6 +15,9 @@ export default function Sidebar({
     handleOnCheckoutFormChange,
     handleOnSubmitCheckoutForm,
 }) {
+    let total = shoppingCart
+        .map((e) => products.find((o) => o.id == e.itemId).price * e.quantity)
+        .reduce((a, b) => a + b, 0);
     return (
         <section className={`sidebar ${isOpen ? "open" : "closed"}`}>
             <div>
@@ -44,29 +47,74 @@ export default function Sidebar({
                         />
                     </button>
                 </div>
-                <table className={isOpen ? "" : "hidden"}>
-                    <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Cost</th>
-                        </tr>
-                        <tr>
-                            <td>Cinnamon Rolls</td>
-                            <td>2</td>
-                            <td>$2.99</td>
-                            <td>$5.98</td>
-                        </tr>
-                        <tr>
-                            <td>Bar Code Shirts</td>
-                            <td>8</td>
-                            <td>$19.99</td>
-                            <td>$39.98</td>
-                        </tr>
-                    </tbody>
-                </table>
+                {shoppingCart.length != 0 ? (
+                    <table className={isOpen ? "" : "hidden"}>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Cost</th>
+                            </tr>
+                            {shoppingCart.map((e) => (
+                                <tr key={`${e.itemId}tr`}>
+                                    <td key={`${e.itemId} ID`}>
+                                        {products.find((o) => o.id == e.itemId)
+                                            ? products.find(
+                                                  (o) => o.id == e.itemId
+                                              ).name
+                                            : ""}
+                                    </td>
+                                    <td key={`${e.itemId} quantity`}>
+                                        {e.quantity}
+                                    </td>
+                                    <td>
+                                        $
+                                        {products.find((o) => o.id == e.itemId)
+                                            ? products
+                                                  .find((o) => o.id == e.itemId)
+                                                  .price.toFixed(2)
+                                            : ""}
+                                    </td>
+                                    <td key={`${e.itemId} total cost`}>
+                                        $
+                                        {products.find((o) => o.id == e.itemId)
+                                            ? (
+                                                  products.find(
+                                                      (o) => o.id == e.itemId
+                                                  ).price * e.quantity
+                                              ).toFixed(2)
+                                            : ""}
+                                    </td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td>Subtotal</td>
+                                <td></td>
+                                <td></td>
+                                <td>${total.toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Taxes and Fees</td>
+                                <td></td>
+                                <td></td>
+                                <td>${(total * 0.08).toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td></td>
+                                <td></td>
+                                <td>${(total * 1.08).toFixed(2)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                ) : (
+                    <h5 className={isOpen ? "" : "hidden"}>
+                        No items added to cart yet.
+                    </h5>
+                )}
             </div>
+
             <div>
                 {isOpen ? <h3>Payment Info</h3> : <></>}
                 <button

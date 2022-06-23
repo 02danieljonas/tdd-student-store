@@ -30,21 +30,27 @@ export default function App() {
     const getData = () => {
         axios
             .get("https://codepath-store-api.herokuapp.com/store")
-            .then(({ data }) => {
-                setProducts(data.products);
-            })
+
+            .then(
+                (res) => {
+                setProducts(res.data.products);
+            }
+            )
             .catch((data) => {
                 console.error("Error with loading data", data);
             });
         setIsFetching(false);
     };
+
     const [isFetching, setIsFetching] = useState(true);
+
     React.useEffect(() => {
         getData();
     }, []);
 
     let error;
-    let shoppingCart = [];
+    // let shoppingCart = [];
+    const [shoppingCart, setShoppingCart] = useState([]);
 
     const [isOpen, handleOnToggle] = useState(false);
 
