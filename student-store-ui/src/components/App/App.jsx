@@ -29,7 +29,7 @@ export default function App() {
 
     const getData = () => {
         axios
-            .get("https://codepath-store-api.herokuapp.com/store")
+            .get("http://localhost:3001/store")
 
             .then(
                 (res) => {

@@ -25,8 +25,8 @@ const ProductCard = ({
                 category == "All"
                     ? ""
                     : product.category
-                          .toLowerCase()
-                          .includes(category.toLowerCase())
+                        .toLowerCase()
+                        .includes(category.toLowerCase())
                     ? ""
                     : "hidden"
             }
