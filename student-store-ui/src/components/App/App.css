@@ -176,20 +176,54 @@ html {
   background-color: darkgray;
 }
 
+.sidebar div {
+  color: white;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar div h3 {
+  display: inline-block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar div button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sidebar #shopping-cart table,
+.sidebar #shopping-cart th,
+.sidebar #shopping-cart td {
+  border: 1px solid black;
+}
+
+.sidebar #shopping-cart table {
+  width: 500px;
+}
+
 .sidebar.open {
-  width: 300px;
+  width: 600px;
 }
 
-.sidebar.open button {
-  position: relative;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  left: 50%;
-  -webkit-transition: all 0 !important;
-  transition: all 0 !important;
-}
-
-.sidebar.open img {
+.sidebar.open img#arrow {
   left: 50%;
   -webkit-transform: scaleX(-1);
           transform: scaleX(-1);

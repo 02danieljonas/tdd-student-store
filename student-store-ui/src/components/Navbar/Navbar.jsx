@@ -9,6 +9,7 @@ export default function Navbar() {
         <nav className="navbar">
             <Logo />
             
+            
         </nav>
     );
 }

@@ -5,7 +5,7 @@
 html {
     background-color: grey;
 }
-.center-center{
+.center-center {
     position: relative;
     margin: auto;
 }
@@ -134,17 +134,46 @@ html {
     bottom: 0;
     transition: width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
     background-color: darkgray;
+    div {
+        color: white;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        h3 {
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            // display:inline-block;
+            // margin-top: auto;
+            // margin-bottom: auto;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    #shopping-cart {
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+        table{
+            width: 500px;
+        }
+    }
 }
 
 .sidebar.open {
-    width: 300px;
-    button {
-        position: relative;
-        transform: translate(-50%);
-        left: 50%;
-        transition: all 0!important;
-    }
-    img {
+    width: 600px;
+
+    img#arrow {
         left: 50%;
         transform: scaleX(-1);
     }
@@ -166,7 +195,6 @@ html {
         display: block;
         margin-left: auto;
         margin-right: auto;
-
         width: 900px;
     }
 }

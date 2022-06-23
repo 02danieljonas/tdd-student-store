@@ -59,18 +59,20 @@ export default function App() {
         if (notFound) {
             shoppingCart.push({ itemId: productId, quantity: 1 });
         }
+        console.log(shoppingCart);
     };
     const handleRemoveItemFromCart = (productId) => {
-        let notFound = true;
-        shoppingCart.forEach((e) => {
+        shoppingCart.forEach((e, index, arr) => {
             if (productId == e.itemId) {
-                if (e.quantity > 0) e.quantity -= 1;
-                notFound = false;
+                if (e.quantity > 0) {
+                    e.quantity -= 1;
+                }
+                if (e.quantity == 0) {
+                    arr.splice(index, index + 1);
+                }
             }
         });
-        if (notFound) {
-            shoppingCart.push({ itemId: productId, quantity: 1 });
-        }
+        console.log(shoppingCart);
     };
 
     const handleOnCheckoutFormChange = (props) => {
@@ -89,6 +91,10 @@ export default function App() {
                         isOpen={isOpen}
                         products={products}
                         handleOnToggle={handleOnToggle}
+                        shoppingCart={shoppingCart}
+                        // checkoutForm={checkoutForm}
+                        handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+                        handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
                     />
 
                     <Routes>
