@@ -6,10 +6,8 @@ import NotFound from "../NotFound/NotFound";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-// import db from "../../../../student-store-express-api/data/db.json";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-// import { useEffect } from "react";
 
 const ProductDetail = ({ products }) => {
     let productId = useParams().productId;
@@ -30,12 +28,10 @@ export default function App() {
     const getData = () => {
         axios
             .get("http://localhost:3001/store")
-
-            .then(
-                (res) => {
+            // .get("https://codepath-store-api.herokuapp.com/store")
+            .then((res) => {
                 setProducts(res.data.products);
-            }
-            )
+            })
             .catch((data) => {
                 console.error("Error with loading data", data);
             });
@@ -65,7 +61,7 @@ export default function App() {
         if (notFound) {
             shoppingCart.push({ itemId: productId, quantity: 1 });
         }
-        console.log(shoppingCart);
+        setShoppingCart([...shoppingCart]);
     };
     const handleRemoveItemFromCart = (productId) => {
         shoppingCart.forEach((e, index, arr) => {
@@ -78,14 +74,38 @@ export default function App() {
                 }
             }
         });
-        console.log(shoppingCart);
+        setShoppingCart([...shoppingCart]);
     };
 
     const handleOnCheckoutFormChange = (props) => {
         console.log("checkout form changed", props.target);
     };
-    const handleOnSubmitCheckoutForm = (props) => {
-        console.log("checkout form submitted", props.target);
+    const handleOnSubmitCheckoutForm = ({ shoppingCart }) => {
+        console.log(shoppingCart);
+        axios
+            .post("http://localhost:3001/store/", {
+                user: {
+                    email: "mail@mail.com",
+                    name: "Joe",
+                },
+                shoppingcart: [
+                    {
+                        itemId: 1,
+                        quantity: 2,
+                    },
+                    {
+                        itemId: 2,
+                        quantity: 1,
+                    },
+                    {
+                        itemId: 3,
+                        quantity: 1,
+                    },
+                ],
+            })
+            .then((res) => {
+                console.log(res);
+            });
     };
 
     return (

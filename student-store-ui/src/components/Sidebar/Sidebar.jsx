@@ -15,14 +15,16 @@ export default function Sidebar({
     handleOnCheckoutFormChange,
     handleOnSubmitCheckoutForm,
 }) {
-    let total = shoppingCart
+    const total = shoppingCart
         .map((e) => products.find((o) => o.id == e.itemId).price * e.quantity)
         .reduce((a, b) => a + b, 0);
+    console.log(shoppingCart);
+
     return (
         <section className={`sidebar ${isOpen ? "open" : "closed"}`}>
             <div>
                 <button
-                    className="toggle-button"
+                    className="toggle-button svg"
                     onClick={() => {
                         handleOnToggle(!isOpen);
                     }}
@@ -35,7 +37,7 @@ export default function Sidebar({
                 <div className="icon">
                     {isOpen ? <h3>Shopping Cart</h3> : <></>}
                     <button
-                        className="toggle-button"
+                        className="shopping-button svg"
                         onClick={() => {
                             handleOnToggle(true);
                         }}
@@ -98,13 +100,13 @@ export default function Sidebar({
                                 <td>Taxes and Fees</td>
                                 <td></td>
                                 <td></td>
-                                <td>${(total * 0.08).toFixed(2)}</td>
+                                <td>${(total * 0.0875).toFixed(2)}</td>
                             </tr>
                             <tr>
                                 <td>Total</td>
                                 <td></td>
                                 <td></td>
-                                <td>${(total * 1.08).toFixed(2)}</td>
+                                <td>${(total * 1.0875).toFixed(2)}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -118,7 +120,7 @@ export default function Sidebar({
             <div>
                 {isOpen ? <h3>Payment Info</h3> : <></>}
                 <button
-                    className="toggle-button"
+                    className="payment-button svg"
                     onClick={() => {
                         handleOnToggle(true);
                     }}
@@ -126,17 +128,63 @@ export default function Sidebar({
                     <img src={coin} alt="coin" width={40} />
                 </button>
             </div>
-            <div>
-                {isOpen ? <h3>Checkout Info</h3> : <></>}
 
-                <button
-                    className="toggle-button"
-                    onClick={() => {
-                        handleOnToggle(true);
-                    }}
-                >
-                    <img src={check} alt="check" width={40} />
-                </button>
+            {isOpen ? (
+                <div id="form">
+                    <label htmlFor="name">Name:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="John Doe"
+                    ></input>
+                    <br />
+                    <label htmlFor="email">Email:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="johndoe@mail.com"
+                    ></input>
+                    <br />
+                    <div>
+                        {" "}
+                        <button
+                            onClick={()=>{handleOnSubmitCheckoutForm(shoppingCart={shoppingCart})}}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            ) : (
+                <></>
+            )}
+            <div>
+                <div>
+                    {isOpen ? <h3>Checkout Info</h3> : <></>}
+
+                    <button
+                        className="checkout-button svg"
+                        onClick={() => {
+                            handleOnToggle(true);
+                        }}
+                    >
+                        <img src={check} alt="check" width={40} />
+                    </button>
+                </div>
+                {isOpen ? (
+                    <div id="confirmation">
+                        <h4 id="wrap">
+                            A confirmation email will be sent to you so that you
+                            can confirm this order. Once you have confirmed the
+                            order, it will be delivered to your dorm room.
+                        </h4>
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
         </section>
     );

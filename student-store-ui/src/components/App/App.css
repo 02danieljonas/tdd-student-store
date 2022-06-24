@@ -7,6 +7,10 @@ html {
   margin: auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 .hidden {
   display: none !important;
 }
@@ -181,6 +185,7 @@ html {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -195,7 +200,7 @@ html {
           justify-content: center;
 }
 
-.sidebar div button {
+.sidebar div button.svg {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -217,6 +222,37 @@ html {
 
 .sidebar #shopping-cart table {
   width: 500px;
+}
+
+.sidebar #form {
+  padding-bottom: 15px;
+}
+
+.sidebar #form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.sidebar #form button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.sidebar #confirmation {
+  padding-top: 0;
+  margin: 10px;
 }
 
 .sidebar.open {

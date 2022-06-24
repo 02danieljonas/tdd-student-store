@@ -10,8 +10,12 @@ html {
     margin: auto;
 }
 
+button{
+    cursor: pointer;
+}
+
 .hidden {
-    display: none!important;
+    display: none !important;
 }
 
 .app {
@@ -134,9 +138,11 @@ html {
     bottom: 0;
     transition: width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
     background-color: darkgray;
+
     div {
         color: white;
         width: max-content;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
         h3 {
@@ -147,7 +153,7 @@ html {
             // margin-top: auto;
             // margin-bottom: auto;
         }
-        button {
+        button.svg {
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -164,11 +170,38 @@ html {
         td {
             border: 1px solid black;
         }
-        table{
+        table {
             width: 500px;
         }
     }
+    #form {
+        padding-bottom: 15px;
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color:black;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    }
+    #confirmation{
+        padding-top: 0;
+        margin: 10px;
+    }
 }
+
 
 .sidebar.open {
     width: 600px;
