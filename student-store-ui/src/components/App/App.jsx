@@ -77,8 +77,9 @@ export default function App() {
         setShoppingCart([...shoppingCart]);
     };
 
-    const handleOnCheckoutFormChange = (props) => {
-        console.log("checkout form changed", props.target);
+    const handleOnCheckoutFormChange = (whichInput, value) => {
+        //.maybe use a useState to set the values of name or email to allow passage to backend
+        console.log("checkout form changed", whichInput, value);
     };
     const handleOnSubmitCheckoutForm = ({ shoppingCart }) => {
         console.log(shoppingCart);

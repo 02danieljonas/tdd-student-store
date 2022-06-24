@@ -137,7 +137,10 @@ export default function Sidebar({
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="John Doe"
+                        placeholder="Student Name"
+                        onChange={({target})=>{
+                            handleOnCheckoutFormChange("name", target.value)
+                        }}
                     ></input>
                     <br />
                     <label htmlFor="email">Email:</label>
@@ -146,7 +149,10 @@ export default function Sidebar({
                         type="text"
                         id="email"
                         name="email"
-                        placeholder="johndoe@mail.com"
+                        placeholder="student@codepath.org"
+                        onChange={({target})=>{
+                            handleOnCheckoutFormChange("email", target.value)
+                        }}
                     ></input>
                     <br />
                     <div>
