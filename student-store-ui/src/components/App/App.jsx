@@ -77,35 +77,51 @@ export default function App() {
         setShoppingCart([...shoppingCart]);
     };
 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [missingFormData, setMissingFormData] = useState(null);
+
     const handleOnCheckoutFormChange = (whichInput, value) => {
-        //.maybe use a useState to set the values of name or email to allow passage to backend
-        console.log("checkout form changed", whichInput, value);
+        if (whichInput == "name") {
+            setName(value);
+        } else if (whichInput == "email") {
+            setEmail(value);
+        } else {
+            console.error(
+                "please provide name or email to handleOnCheckoutFormChange"
+            );
+        }
     };
     const handleOnSubmitCheckoutForm = ({ shoppingCart }) => {
-        console.log(shoppingCart);
+        if (!name) {
+            console.log("Name is empty");
+            setMissingFormData("name");
+            return;
+        }
+        if (!email) {
+            console.log("Email is empty");
+            setMissingFormData("email");
+            return;
+        }
+        if (shoppingCart.length == 0) {
+            console.log("ShoppingCart is empty");
+            setMissingFormData("shoppingcart");
+            return;
+        }
+
         axios
             .post("http://localhost:3001/store/", {
                 user: {
-                    email: "mail@mail.com",
-                    name: "Joe",
+                    email: email,
+                    name: name,
                 },
-                shoppingcart: [
-                    {
-                        itemId: 1,
-                        quantity: 2,
-                    },
-                    {
-                        itemId: 2,
-                        quantity: 1,
-                    },
-                    {
-                        itemId: 3,
-                        quantity: 1,
-                    },
-                ],
+                shoppingcart: shoppingCart,
             })
             .then((res) => {
                 console.log(res);
+            })
+            .catch(() => {
+                console.log("An error occured with posting data");
             });
     };
 

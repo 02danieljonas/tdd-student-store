@@ -18,7 +18,7 @@ export default function Sidebar({
     const total = shoppingCart
         .map((e) => products.find((o) => o.id == e.itemId).price * e.quantity)
         .reduce((a, b) => a + b, 0);
-    console.log(shoppingCart);
+    // console.log(shoppingCart);
 
     return (
         <section className={`sidebar ${isOpen ? "open" : "closed"}`}>
