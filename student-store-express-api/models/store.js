@@ -74,11 +74,10 @@ class Store {
         });
 
         if (new Set(itemId).size !== itemId.length) {
-            throw new BadRequestError("The shoppingcart has a duplicate itemId");
+            throw new BadRequestError(
+                "The shoppingcart has a duplicate itemId"
+            );
         }
-        let total = body.shoppingcart.map((e) => {
-            return e.itemId;
-        });
 
         let today = new Date();
         let purchaseData = {
@@ -86,9 +85,9 @@ class Store {
                 name: body.user.name,
                 email: body.user.email,
                 order: body.shoppingcart,
-                total: (sum*1.0875).toFixed(2),
+                total: (sum * 1.0875).toFixed(2),
                 createdAt: today,
-            }
+            },
         };
         let postInfo = { user: body.user, shoppingcart: body.shoppingcart };
         db.get("purchases").push(purchaseData).write();
