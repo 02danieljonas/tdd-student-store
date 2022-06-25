@@ -64,7 +64,7 @@ const Search = ({ setSearchValue, setCategory, category }) => {
     );
 };
 
-function Home({ products, handleAddItemToCart, handleRemoveItemFromCart }) {
+function Home({ products, handleAddItemToCart, handleRemoveItemFromCart, shoppingCart }) {
     const [searchValue, setSearchValue] = useState("");
     const [category, setCategory] = useState("All");
     return (
@@ -82,6 +82,7 @@ function Home({ products, handleAddItemToCart, handleRemoveItemFromCart }) {
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
                 searchValue={searchValue}
                 category={category}
+                shoppingCart={shoppingCart}
             />
             <p>Home</p>
         </div>

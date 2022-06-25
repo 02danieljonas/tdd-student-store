@@ -2,28 +2,16 @@ import * as React from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
+import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-
-const ProductDetail = ({ products }) => {
-    let productId = useParams().productId;
-    let product = products[productId - 1];
-    return (
-        <div className="product-container">
-            <h1 className="product-name">{product.name}</h1>
-            <img src={product.image} />
-            {product.description}
-            <br />${product.price.toFixed(2)}
-        </div>
-    );
-};
 
 export default function App() {
     const [products, setProducts] = useState([]);
+    const [receipt, setReceipt] = useState(null);
 
     const getData = () => {
         axios
@@ -45,29 +33,37 @@ export default function App() {
     }, []);
 
     let error;
-    // let shoppingCart = [];
     const [shoppingCart, setShoppingCart] = useState([]);
 
     const [isOpen, handleOnToggle] = useState(false);
 
     const handleAddItemToCart = (productId) => {
-        let notFound = true;
-        shoppingCart.forEach((e) => {
-            if (productId == e.itemId) {
-                e.quantity += 1;
-                notFound = false;
-            }
-        });
-        if (notFound) {
-            shoppingCart.push({ itemId: productId, quantity: 1 });
+        if (shoppingCart.some((element) => element.itemId === productId)) {
+            const idx = shoppingCart.findIndex(
+                (element2) => element2.itemId === productId
+            );
+            let item = shoppingCart[idx];
+            item.quantity++;
+            setShoppingCart([
+                ...shoppingCart.slice(0, idx),
+                item,
+                ...shoppingCart.slice(idx + 1, shoppingCart.length),
+            ]);
+        } else {
+            setShoppingCart((shoppingCart) => [
+                ...shoppingCart,
+                { itemId: productId, quantity: 1 },
+            ]);
         }
-        setShoppingCart([...shoppingCart]);
     };
+
     const handleRemoveItemFromCart = (productId) => {
+        let amount = 0;
         shoppingCart.forEach((e, index, arr) => {
             if (productId == e.itemId) {
                 if (e.quantity > 0) {
                     e.quantity -= 1;
+                    amount = e.quantity;
                 }
                 if (e.quantity == 0) {
                     arr.splice(index, index + 1);
@@ -75,6 +71,7 @@ export default function App() {
             }
         });
         setShoppingCart([...shoppingCart]);
+        return amount;
     };
 
     const [name, setName] = useState("");
@@ -108,6 +105,7 @@ export default function App() {
             setMissingFormData("shoppingcart");
             return;
         }
+        setShoppingCart([]);
 
         axios
             .post("http://localhost:3001/store/", {
@@ -118,7 +116,13 @@ export default function App() {
                 shoppingcart: shoppingCart,
             })
             .then((res) => {
-                console.log(res);
+                setReceipt(
+                    `Thank you ${res.data.purchase.name} 
+                    for your purchase totalling
+                    $${res.data.purchase.total}.
+                    We have sent a confirmation email to ${res.data.purchase.email}.
+                    Your purchase has been timestamp for ${res.data.purchase.createdAt}`
+                );
             })
             .catch(() => {
                 console.log("An error occured with posting data");
@@ -135,9 +139,10 @@ export default function App() {
                         products={products}
                         handleOnToggle={handleOnToggle}
                         shoppingCart={shoppingCart}
-                        // checkoutForm={checkoutForm}
                         handleOnCheckoutFormChange={handleOnCheckoutFormChange}
                         handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+                        receipt={receipt}
+                        setReceipt={setReceipt}
                     />
 
                     <Routes>
@@ -150,6 +155,7 @@ export default function App() {
                                     handleRemoveItemFromCart={
                                         handleRemoveItemFromCart
                                     }
+                                    shoppingCart={shoppingCart}
                                 />
                             }
                         />

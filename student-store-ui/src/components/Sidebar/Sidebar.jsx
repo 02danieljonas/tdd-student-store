@@ -5,6 +5,8 @@ import shoppingCartSVG from "./shoppingcart.svg";
 import check from "./check.svg";
 import coin from "./coin.svg";
 import { useState } from "react";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+
 
 export default function Sidebar({
     isOpen,
@@ -14,6 +16,8 @@ export default function Sidebar({
     checkoutForm,
     handleOnCheckoutFormChange,
     handleOnSubmitCheckoutForm,
+    setReceipt,
+    receipt,
 }) {
     const total = shoppingCart
         .map((e) => products.find((o) => o.id == e.itemId).price * e.quantity)
@@ -111,7 +115,7 @@ export default function Sidebar({
                         </tbody>
                     </table>
                 ) : (
-                    <h5 className={isOpen ? "" : "hidden"}>
+                    <h5 className={isOpen ? "notification" : "notification hidden"}>
                         No items added to cart yet.
                     </h5>
                 )}
@@ -138,8 +142,8 @@ export default function Sidebar({
                         id="name"
                         name="name"
                         placeholder="Student Name"
-                        onChange={({target})=>{
-                            handleOnCheckoutFormChange("name", target.value)
+                        onChange={({ target }) => {
+                            handleOnCheckoutFormChange("name", target.value);
                         }}
                     ></input>
                     <br />
@@ -150,17 +154,21 @@ export default function Sidebar({
                         id="email"
                         name="email"
                         placeholder="student@codepath.org"
-                        onChange={({target})=>{
-                            handleOnCheckoutFormChange("email", target.value)
+                        onChange={({ target }) => {
+                            handleOnCheckoutFormChange("email", target.value);
                         }}
                     ></input>
                     <br />
                     <div>
                         {" "}
                         <button
-                            onClick={()=>{handleOnSubmitCheckoutForm(shoppingCart={shoppingCart})}}
+                            onClick={() => {
+                                handleOnSubmitCheckoutForm(
+                                    (shoppingCart = { shoppingCart })
+                                );
+                            }}
                         >
-                            Submit
+                            Checkout
                         </button>
                     </div>
                 </div>
@@ -182,7 +190,9 @@ export default function Sidebar({
                 </div>
                 {isOpen ? (
                     <div id="confirmation">
+
                         <h4 id="wrap">
+                            {receipt}<br/><br/>
                             A confirmation email will be sent to you so that you
                             can confirm this order. Once you have confirmed the
                             order, it will be delivered to your dorm room.

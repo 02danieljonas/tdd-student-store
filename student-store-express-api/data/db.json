@@ -145,5 +145,28 @@
       "price": 999.99
     }
   ],
-  "purchases": []
+  "purchases": [
+    {
+      "purchase": {
+        "name": "d",
+        "email": "d",
+        "order": [
+          {
+            "itemId": 2,
+            "quantity": 1
+          },
+          {
+            "itemId": 6,
+            "quantity": 1
+          },
+          {
+            "itemId": 7,
+            "quantity": 1
+          }
+        ],
+        "total": "28.80",
+        "createdAt": "2022-06-24T22:58:19.543Z"
+      }
+    }
+  ]
 }

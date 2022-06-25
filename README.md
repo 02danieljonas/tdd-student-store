@@ -22,7 +22,7 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 - [X] User can click the '+' button on a product cart to increment that product in the shopping cart.
 - [X] User can click the '-' button on a product cart to increment that product in the shopping cart.
 - [X] Shopping cart displays a table of products, quantities, subtotal, tax, and total.
-- [ ] User can check out, and can view receipt upon completion.
+- [X] User can check out, and can view receipt upon completion.
 
 #### Stretch Features
 
@@ -245,14 +245,14 @@ The following specifications were met on the Express backend and the React front
         - [ ] The `checkoutForm` should be reset to its default state.
 
 **Server** - Create an Express server
-  - [ ] Wire up the appropriate middleware and error handlers in the `app.js` file
+  - [X] Wire up the appropriate middleware and error handlers in the `app.js` file
   - [X] Create a single `GET` request handler at the `/` endpoint. It should respond to all `GET` requests with a JSON object and a `200` status code. The JSON response should contain a single key of `ping` that stores the string value: `pong`. For example: `{ "ping": "pong" }`.
   - [X] Have a `server.js` file that starts the app by listening on port `3001`.
 
 **Models** - The API should use a `Store` model that handles the following
   - [X] List all products currently in the `db.json` file
   - [X] Fetch a single product by its id
-  - [ ] Create a purchase order
+  - [X] Create a purchase order
 
 **Routes** - The API should contain a route mounted at the `/store` endpoint
   - [X] It should respond to `GET` requests to `/store` with an array of all products in the store in this format: `{ "products": products }`
@@ -276,7 +276,7 @@ The following specifications were met on the Express backend and the React front
           - [X] `name` - the name of the user making the purchase
           - [X] `email` - the email of the user making the purchase
           - [X] `order` - the `shoppingCart` value sent in the `POST` request
-          - [ ] `total` - the calculated total of the order
+          - [X] `total` - the calculated total of the order
           - [X] `createdAt` - a string representation of the date and time when the order was placed
         - **optional**:
           - [ ] `receipt` - text describing the order (what might go on a receipt)

@@ -6,11 +6,11 @@ const { BadRequestError } = require("../utils/errors");
 
 class Store {
     static products() {
-        console.log(db.get("products"));
+        // console.log(db.get("products"));
         return { products: db.get("products") };
     }
     static product(Id) {
-        let item = {product: db.get("products").find((o) => o.id == Id) }
+        let item = { product: db.get("products").find((o) => o.id == Id) };
         // console.log(item)
         return item;
     }
@@ -37,11 +37,11 @@ class Store {
         let missingInfo = false;
         body.shoppingcart.forEach((e) => {
             if (!Object.keys(e).some((key) => key === "itemId")) {
-                console.log(e);
+                console.error(e);
                 missingInfo = true;
             }
             if (!Object.keys(e).some((key) => key === "quantity")) {
-                console.log(e);
+                console.error(e);
                 missingInfo = true;
             }
         });
@@ -50,50 +50,49 @@ class Store {
                 "Please provide an itemId and a quantity for each item"
             );
         }
+        let products = db.get("products");
 
+        ///* This is ALOT of code and there is most likely an easier way to write this but I don't have time to figure it out *///
 
         let itemId = body.shoppingcart.map((e) => {
             return e.itemId;
         });
-        // .find((o) => o.id == Id)
-        let products = db.get("products")
-
-        let shoppingcartItems=[]
-        itemId.forEach((e)=>{
-            shoppingcartItems.push( products.find((o) => o.id == e))
-        })
-        console.log(Array.isArray(shoppingcartItems))
-        let t=[]
-        shoppingcartItems[0].forEach((e)=>{
-            t.push(e)//TODO this is meant to take the prices and put it into the array ${t}
-        })
-        return shoppingcartItems
-
+        let quantity = body.shoppingcart.map((e) => {
+            return e.quantity;
+        });
+        let shoppingcartItems = [];
+        itemId.forEach((e) => {
+            shoppingcartItems.push(products.find((o) => o.id == e));
+        }); //this pushes in the item
+        let prices = [];
+        shoppingcartItems.forEach((e, idx) => {
+            prices.push(e.value().price * quantity[idx]);
+        });
+        let sum = 0;
+        prices.forEach((e) => {
+            sum += e;
+        });
 
         if (new Set(itemId).size !== itemId.length) {
-            throw new BadRequestError("The shoppingcart has a dupped itemId");
+            throw new BadRequestError("The shoppingcart has a duplicate itemId");
         }
-
         let total = body.shoppingcart.map((e) => {
             return e.itemId;
         });
 
         let today = new Date();
-        // console.log(`today is ${today}`)
-        // console.log(typeof `${today}`)
-        //. return id, name, email, order, total, createAt
         let purchaseData = {
-            name: body.user.name,
-            email: body.user.email,
-            order: body.shoppingcart,
-            total: "Total still needs to be calculated",
-            createdAt: today
+            purchase: {
+                name: body.user.name,
+                email: body.user.email,
+                order: body.shoppingcart,
+                total: (sum*1.0875).toFixed(2),
+                createdAt: today,
+            }
         };
-
-
         let postInfo = { user: body.user, shoppingcart: body.shoppingcart };
-        // db.get("purchases").push(postInfo).write();
-        return { "purchase": body.shoppingcart };
+        db.get("purchases").push(purchaseData).write();
+        return purchaseData;
     }
 }
 
