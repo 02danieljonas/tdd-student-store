@@ -11,8 +11,7 @@ Week 2 gifs
 ![](https://recordit.co/VabN8J1TrX.gif)
 ![](https://recordit.co/Qpj9WSy34G.gif)
 ![](https://recordit.co/65ncQJmB9Q.gif)
-
-
+<br/><br/><br/>
 
 Week 1 gifs
 ![](https://recordit.co/utF1s6eyuj.gif)
@@ -294,6 +293,31 @@ The following specifications were met on the Express backend and the React front
       - [X] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
 
 ---
+
+Week 2
+
+### Reflection
+
+* Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
+
+Yes, the topics discussed in the labs did prepare me to complete the assignment.
+
+* If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
+  
+If I had more time I would add the receipt functionality and break up my components properly.
+
+* Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+
+
+### Open-source libraries used
+
+
+### Shout out
+
+Roy and the people in the discord group.
+
+<br/><br/><br/>
+Week 1
 
 ### Reflection
 
