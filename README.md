@@ -89,7 +89,7 @@ The following specifications were met on the Express backend and the React front
         - [X] It should accept a single argument - `productId`
         - [X] It should decrease the quantity of the item in the `shoppingCart` by `1`, but only if it already exists.
         - [X] If it doesn't exist, the function should do nothing.
-        - [ ] If the new quantity is `0`, it should remove the item from the `shoppingCart`
+        - [X] If the new quantity is `0`, it should remove the item from the `shoppingCart`
       - [ ] The **`handleOnCheckoutFormChange`** function. When called...
         - [ ] It should receive two arguments:
           - [ ] `name` - the `name` attribute of the input being updated
@@ -207,7 +207,7 @@ The following specifications were met on the Express backend and the React front
     - `handleOnToggle` - handler function to toggle open/closed `Sidebar` state
   - [X] It should always render a `button` element with the `className` of `toggle-button`. When that button is clicked it should change the `isOpen` prop by calling the `handleOnToggle` prop.
   - [ ] When the sidebar is opened, it should display the `ShoppingCart` and `CheckoutForm` components and should be wider than `350px`.
-  - [ ] When the sidebar is closed, it should only render the toggle button and shouldn't be wider than `150px`.
+  - [X] When the sidebar is closed, it should only render the toggle button and shouldn't be wider than `150px`.
 
 **ShoppingCart.jsx**
 
@@ -281,7 +281,7 @@ The following specifications were met on the Express backend and the React front
       - [X] When either the `shoppingCart` or `user` fields are missing, it should throw a `400` error.
       - [X] If there are duplicate items in the `shoppingCart`, it should throw a `400` error.
       - [X] If either the `quantity` or `itemId` field is missing for any of the items in the `shoppingCart`, a `400` error should be thrown.
-      - [ ] When both are there, it should calculate the total cost of all the items (including quantities), add a `8.75%` tax to the total, and create a new purchase object containing 6 required fields and 1 optional field:
+      - [X] When both are there, it should calculate the total cost of all the items (including quantities), add a `8.75%` tax to the total, and create a new purchase object containing 6 required fields and 1 optional field:
         - **required**:
           - [X] `id` - the new `id` of the purchase should be equal to one more than the current number of existing purchases
           - [X] `name` - the name of the user making the purchase
@@ -291,7 +291,7 @@ The following specifications were met on the Express backend and the React front
           - [X] `createdAt` - a string representation of the date and time when the order was placed
         - **optional**:
           - [ ] `receipt` - text describing the order (what might go on a receipt)
-      - [ ] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
+      - [X] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
 
 ---
 
