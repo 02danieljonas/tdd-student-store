@@ -23,7 +23,7 @@ Week 1 gifs
 
 #### Core Features
 
-- [ ] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
+- [X] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
 - [X] On initial page load, display the products at the [GET /store endpoint](https://codepath-store-api.herokuapp.com/store).
 - [X] User can click on the categories (Clothing, food, etc) to filter the product grid by type.
 - [X] User can search for products.
