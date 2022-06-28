@@ -2,6 +2,10 @@ import * as React from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
+import AboutMe from "../AboutMe/AboutMe";
+import Footer from "../Footer/Footer";
+import Contact from "../Contact/Contact";
+
 import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
 import "./App.css";
@@ -165,6 +169,9 @@ export default function App() {
                         />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
+                    <AboutMe/>
+                    <Footer/>
+                    <Contact/>
                 </main>
             </BrowserRouter>
         </div>

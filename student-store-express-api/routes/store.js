@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
     try {
-        res.status(200).json(Store.post(req.body));
+        res.status(201).json(Store.post(req.body));
     } catch (err) {
         next(err);
     }
