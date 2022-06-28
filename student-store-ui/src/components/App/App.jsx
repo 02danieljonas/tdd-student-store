@@ -169,9 +169,13 @@ export default function App() {
                         />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
-                    <AboutMe/>
-                    <Footer/>
-                    <Contact/>
+                    <div id="bottomInformation">
+                        <div>
+                            <AboutMe />
+                            <Contact />
+                            <Footer />
+                        </div>
+                    </div>
                 </main>
             </BrowserRouter>
         </div>

@@ -10,7 +10,7 @@ html {
     margin: auto;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -186,7 +186,7 @@ button{
             box-sizing: border-box;
         }
         button {
-            background-color:black;
+            background-color: black;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -196,12 +196,11 @@ button{
             font-size: 16px;
         }
     }
-    #confirmation{
+    #confirmation {
         padding-top: 0;
         margin: 10px;
     }
 }
-
 
 .sidebar.open {
     width: 600px;
@@ -230,4 +229,22 @@ button{
         margin-right: auto;
         width: 900px;
     }
+}
+
+#bottomInformation {
+    background: #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    span {
+        font-weight: bold;
+        font-size: larger;
+    }
+    .Footer {
+        font-size: 20pt;
+        text-align: center;
+    }    
 }

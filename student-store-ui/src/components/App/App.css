@@ -265,7 +265,7 @@ button {
           transform: scaleX(-1);
 }
 
-.product-container {
+.product-detail {
   font-size: 20pt;
   z-index: -1;
   position: relative;
@@ -273,16 +273,45 @@ button {
   margin: 0 auto;
 }
 
-.product-container .product-name {
+.product-detail .product-name {
   font-size: 50pt;
   margin: 0;
   text-align: center;
 }
 
-.product-container img {
+.product-detail img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 900px;
+}
+
+#bottomInformation {
+  background: #cccccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#bottomInformation span {
+  font-weight: bold;
+  font-size: larger;
+}
+
+#bottomInformation .Footer {
+  font-size: 20pt;
+  text-align: center;
 }
 /*# sourceMappingURL=App.css.map */
